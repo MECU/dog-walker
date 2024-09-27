@@ -76,3 +76,5 @@ gem 'pg', '~> 1.5'
 gem 'ostruct'
 
 gem 'rubocop', '~> 1.66'
+
+gem "simplecov", "~> 0.22.0"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class SchedulesControllerTest < ActionDispatch::IntegrationTest
@@ -15,6 +17,21 @@ class SchedulesControllerTest < ActionDispatch::IntegrationTest
     Schedule.create!(dog: max, schedule_date: Date.today, morning: true, afternoon: true, status: 'playing', walker:)
 
     get schedule_status_url(date: Date.today, status: 'home')
+    assert_response :success
+    assert_includes @response.body, fido.name
+    assert_not_includes @response.body, max.name
+  end
+
+  # GET /schedule/:date/status?walker=:id
+  test 'response has the dogs in only for the walker specified' do
+    fido = dogs(:one)
+    max = dogs(:two)
+    alice = walkers(:one)
+    bob = walkers(:two)
+    s = Schedule.create!(dog: fido, schedule_date: Date.today, morning: true, afternoon: true, status: 'home', walker: alice)
+    Schedule.create!(dog: max, schedule_date: Date.today, morning: true, afternoon: true, status: 'playing', walker: bob)
+
+    get schedule_status_url(date: Date.today, dog: s.id, status: 'home', walker: alice.id)
     assert_response :success
     assert_includes @response.body, fido.name
     assert_not_includes @response.body, max.name
