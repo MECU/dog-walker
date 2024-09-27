@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>DogWalker</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<html lang="en">
+<head>
+  <title>Dog Walker</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-  <div class="antialiased bg-gray-50 dark:bg-gray-900">
+<body>
+<div class="antialiased bg-gray-50 dark:bg-gray-900">
 
-    <%= render partial: "shared/header" %>
-    <%#= render partial: "shared/navbar" %>
+  <%= render partial: "shared/header" %>
+  <%#= render partial: "shared/navbar" %>
 
-    <main class="container mx-auto mt-28 pl-20 pr-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+  <main class="container mx-auto mt-28 pl-20 pr-5 flex">
+    <%= yield %>
+  </main>
+</div>
+</body>
 </html>
