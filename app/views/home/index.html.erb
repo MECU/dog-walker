@@ -1,0 +1,7 @@
+<ul>
+<% @walkers.each do |walker| %>
+    <li><%= link_to(walker.name, walker_path(walker)) %></li>
+<% end %>
+</ul>
+
+<%= link_to('Schedule 2024-09-26', 'schedule/2024-09-26') %>

@@ -11,7 +11,8 @@ namespace :schedule do
       Schedule.create!(dog: schedule.dog,
                        schedule_date: today,
                        morning: schedule.thursday_morning,
-                       afternoon: schedule.thursday_afternoon
+                       afternoon: schedule.thursday_afternoon,
+                       status: 'home'
       )
       created += 1
     end
