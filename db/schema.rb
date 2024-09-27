@@ -32,7 +32,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_26_180830) do
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
-    t.string "status"
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,6 +39,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_26_180830) do
 
   create_table "schedules", force: :cascade do |t|
     t.integer "dog_id"
+    t.integer "walker_id"
+    t.string "status"
     t.date "schedule_date"
     t.boolean "morning"
     t.boolean "afternoon"
