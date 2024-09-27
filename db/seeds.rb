@@ -18,7 +18,7 @@ Walker.create!([
                  { name: 'Jack' }
                ])
 
-1000.times do |_|
+200.times do |_|
   Dog.create!(name: "Dog #{SecureRandom.hex(3)}")
 end
 

@@ -1,5 +1,6 @@
 class Schedule < ApplicationRecord
   belongs_to :dog
+  has_one :walker
 
   STATUS = %w[home arriving playing leaving done].freeze
 
