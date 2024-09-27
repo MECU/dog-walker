@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container select-none">
   <div class="grid lg:grid-cols-5 gap-3 mb-4">
     <% Schedule::STATUS.each do |status| %>
       <turbo-frame id="<%= status %>" src="/schedule/<%= @date %>/<%= status %><%= params[:walker_id] ? "?walker_id=#{params[:walker_id]}" : '' %>">
