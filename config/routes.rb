@@ -4,11 +4,7 @@ Rails.application.routes.draw do
   get '/walkers/:id', to: 'walkers#show', as: 'walker'
 
   get '/schedule/:date', to: 'schedules#show', as: 'schedule'
-  get '/schedule/:date/home', to: 'schedules#home'
-  get '/schedule/:date/arriving', to: 'schedules#arriving'
-  get '/schedule/:date/playing', to: 'schedules#playing'
-  get '/schedule/:date/leaving', to: 'schedules#leaving'
-  get '/schedule/:date/done', to: 'schedules#done'
+  get '/schedule/:date/status', to: 'schedules#status'
 
   post '/schedule/updates', to: 'schedules#update'
   post '/schedule/update/walker', to: 'schedules#update_walker'

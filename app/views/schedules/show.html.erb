@@ -1,7 +1,7 @@
 <div class="container select-none">
   <div class="grid lg:grid-cols-5 gap-3 mb-4">
     <% Schedule::STATUS.each do |status| %>
-      <turbo-frame id="<%= status %>" src="/schedule/<%= @date %>/<%= status %><%= params[:walker_id] ? "?walker_id=#{params[:walker_id]}" : '' %>">
+      <turbo-frame id="<%= status %>" src="/schedule/<%= @date %>/status/?status=<%= status %><%= params[:walker_id] ? "&walker_id=#{params[:walker_id]}" : '' %>">
       <div><%= status.capitalize %></div>
       <div class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600">
         <div class="flex items-center justify-center w-56 h-56 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
