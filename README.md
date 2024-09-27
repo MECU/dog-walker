@@ -4,3 +4,4 @@
 * rails db:setup
 * rake schedule:load
 * ./bin/dev
+* http://127.0.0.1:3000

@@ -22,7 +22,8 @@ class SchedulesController < ApplicationController
 
   def update
     params.require(%i[dog status])
-    schedule = Schedule.where(id: params[:dog]).update!(status: params[:status])
+    schedule = Schedule.find(params[:dog])
+    schedule.update!(status: params[:status])
 
     if params[:manager]
       @manager = true
@@ -30,11 +31,11 @@ class SchedulesController < ApplicationController
     end
 
     # Update this status and previous status
-    streams = [update_display(schedule.first.schedule_date, params[:status],
-                              @manager ? nil : schedule.first.walker_id)]
+    streams = [update_display(schedule.schedule_date, params[:status],
+                              @manager ? nil : schedule.walker_id)]
     previous_status = Schedule.previous_status(params[:status])
-    streams.append(update_display(schedule.first.schedule_date, previous_status,
-                                  @manager ? nil : schedule.first.walker_id))
+    streams.append(update_display(schedule.schedule_date, previous_status,
+                                  @manager ? nil : schedule.walker_id))
 
     render turbo_stream: streams
   end
