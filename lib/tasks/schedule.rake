@@ -3,8 +3,8 @@
 namespace :schedule do
   desc 'Create schedule for today'
   task load: :environment do
-    # Hardcoding the date for today, ideally a param passed in
-    today = '2024-09-26'
+    # Default the date for today, ideally a param passed in
+    today = Date.today
 
     walkers = Walker.pluck(:id)
 

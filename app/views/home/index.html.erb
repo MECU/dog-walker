@@ -1,6 +1,6 @@
 <ul class="max-w-md space-y-1 text-blue-500 list-inside dark:text-gray-400 select-none">
-  <li><%= link_to('Full Schedule', 'schedule/2024-09-26') %></li>
+  <li><%= link_to('Full Schedule (Manager view)', "schedule/#{@date}") %></li>
   <% @walkers.each do |walker| %>
-    <li><%= link_to(walker.name, "schedule/2024-09-26?walker_id=#{walker.id}") %></li>
+    <li><%= link_to(walker.name, "schedule/#{@date}?walker=#{walker.id}") %></li>
   <% end %>
 </ul>
