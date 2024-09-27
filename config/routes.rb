@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get '/schedule/:date/done', to: 'schedules#done'
 
   post '/schedule/updates', to: 'schedules#update'
+  post '/schedule/update/walker', to: 'schedules#update_walker'
 end

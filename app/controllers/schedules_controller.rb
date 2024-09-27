@@ -1,11 +1,17 @@
 class SchedulesController < ApplicationController
   def show
     @date = params[:date]
+
+    @manager = true
   end
 
   def home
     @dogs = Schedule.where(schedule_date: params[:date]).where(status: 'home').includes(:dog)
-    @dogs = @dogs.where(walker_id: params[:walker_id]) if params[:walker_id]
+    if params[:walker_id]
+      @dogs = @dogs.where(walker_id: params[:walker_id])
+    else
+      @manager = true
+    end
 
     render partial: 'status', locals: { status: 'home' }
   end
@@ -51,8 +57,16 @@ class SchedulesController < ApplicationController
     render turbo_stream: streams
   end
 
+  def update_walker
+    params.require([:dog, :walker])
+    schedule = Schedule.where(id: params[:dog]).update!(walker_id: params[:walker])
+    @manager = true
+
+    render turbo_stream: update_display(schedule.first.schedule_date, schedule.first.status)
+  end
+
   private
-  def update_display(schedule_date, status, walker_id)
+  def update_display(schedule_date, status, walker_id=nil)
     @dogs = Schedule.where(schedule_date:).where(status:).includes(:dog)
     @dogs = @dogs.where(walker_id:) if walker_id
 
