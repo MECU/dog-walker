@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - 'bin/bundle'
+    - 'db/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+
+Style/Documentation:
+  Enabled: false
