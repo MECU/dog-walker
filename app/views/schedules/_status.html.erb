@@ -1,0 +1,12 @@
+<turbo-frame id="<%= status %>">
+  <div><%= status.capitalize %>
+    <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+      <%= @dogs.count %>
+    </span>
+  </div>
+  <div class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 min-h-full">
+    <% @dogs.each do |dog| %>
+      <%= render partial: "dog", locals: { dog: dog } %>
+    <% end %>
+  </div>
+</turbo-frame>
