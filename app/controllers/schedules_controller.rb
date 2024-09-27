@@ -9,7 +9,7 @@ class SchedulesController < ApplicationController
 
   def status
     status = params[:status]
-    @dogs = Schedule.where(schedule_date: params[:date]).where(status:).includes(:dog)
+    @dogs = Schedule.where(schedule_date: params[:date]).where(status:).includes(:dog, :walker)
     if params[:walker]
       @dogs = @dogs.where(walker_id: params[:walker])
     else

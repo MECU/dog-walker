@@ -2,7 +2,7 @@
 
 namespace :schedule do
   desc 'Create schedule for today'
-  task load: :environment do
+  task create: :environment do
     # Default the date for today, ideally a param passed in
     today = Date.today
 
