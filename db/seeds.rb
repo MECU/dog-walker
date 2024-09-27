@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -25,7 +27,7 @@ end
 Dog.all.each do |dog|
   morning = [true, false].sample
   afternoon = [true, false].sample
-  morning = true if (!morning && !afternoon)
+  morning = true if !morning && !afternoon
   full_week = [true, false].sample
 
   DogSchedule.create!(dog:,
@@ -38,6 +40,5 @@ Dog.all.each do |dog|
                       thursday_morning: morning && full_week,
                       thursday_afternoon: afternoon && full_week,
                       friday_morning: morning,
-                      friday_afternoon: afternoon,
-                      )
+                      friday_afternoon: afternoon)
 end

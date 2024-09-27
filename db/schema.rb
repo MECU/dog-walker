@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,48 +12,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_26_180830) do
+ActiveRecord::Schema[7.1].define(version: 20_240_926_180_830) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "dog_schedules", force: :cascade do |t|
-    t.integer "dog_id"
-    t.boolean "monday_morning"
-    t.boolean "monday_afternoon"
-    t.boolean "tuesday_morning"
-    t.boolean "tuesday_afternoon"
-    t.boolean "wednesday_morning"
-    t.boolean "wednesday_afternoon"
-    t.boolean "thursday_morning"
-    t.boolean "thursday_afternoon"
-    t.boolean "friday_morning"
-    t.boolean "friday_afternoon"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'dog_schedules', force: :cascade do |t|
+    t.integer 'dog_id'
+    t.boolean 'monday_morning'
+    t.boolean 'monday_afternoon'
+    t.boolean 'tuesday_morning'
+    t.boolean 'tuesday_afternoon'
+    t.boolean 'wednesday_morning'
+    t.boolean 'wednesday_afternoon'
+    t.boolean 'thursday_morning'
+    t.boolean 'thursday_afternoon'
+    t.boolean 'friday_morning'
+    t.boolean 'friday_afternoon'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "dogs", force: :cascade do |t|
-    t.string "name"
-    t.integer "owner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'dogs', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'owner_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "schedules", force: :cascade do |t|
-    t.integer "dog_id"
-    t.integer "walker_id"
-    t.string "status"
-    t.date "schedule_date"
-    t.boolean "morning"
-    t.boolean "afternoon"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'schedules', force: :cascade do |t|
+    t.integer 'dog_id'
+    t.integer 'walker_id'
+    t.string 'status'
+    t.date 'schedule_date'
+    t.boolean 'morning'
+    t.boolean 'afternoon'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "walkers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'walkers', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

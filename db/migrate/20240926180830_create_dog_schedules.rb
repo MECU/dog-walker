@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDogSchedules < ActiveRecord::Migration[7.1]
   def change
     create_table :dog_schedules do |t|

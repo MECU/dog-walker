@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SchedulesController < ApplicationController
   def show
     @date = params[:date]
@@ -19,24 +21,26 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    params.require([:dog, :status])
+    params.require(%i[dog status])
     schedule = Schedule.where(id: params[:dog]).update!(status: params[:status])
 
     if params[:manager]
       @manager = true
       @walkers = Walker.all
     end
+
     # Update this status and previous status
-    streams = []
-    streams.append(update_display(schedule.first.schedule_date, params[:status], @manager ? nil : schedule.first.walker_id))
-    previous_status = Schedule::previous_status(params[:status])
-    streams.append(update_display(schedule.first.schedule_date, previous_status, @manager ? nil : schedule.first.walker_id))
+    streams = [update_display(schedule.first.schedule_date, params[:status],
+                              @manager ? nil : schedule.first.walker_id)]
+    previous_status = Schedule.previous_status(params[:status])
+    streams.append(update_display(schedule.first.schedule_date, previous_status,
+                                  @manager ? nil : schedule.first.walker_id))
 
     render turbo_stream: streams
   end
 
   def update_walker
-    params.require([:dog, :walker])
+    params.require(%i[dog walker])
     schedule = Schedule.where(id: params[:dog]).update!(walker_id: params[:walker])
     @manager = true
     @walkers = Walker.all
@@ -45,13 +49,13 @@ class SchedulesController < ApplicationController
   end
 
   private
-  def update_display(schedule_date, status, walker_id=nil)
+
+  def update_display(schedule_date, status, walker_id = nil)
     @dogs = Schedule.where(schedule_date:).where(status:).includes(:dog, :walker)
     @dogs = @dogs.where(walker_id:) if walker_id
 
     turbo_stream.replace(status,
-                         partial: "schedules/status",
-                         locals: { status: }
-    )
+                         partial: 'schedules/status',
+                         locals: { status: })
   end
 end
