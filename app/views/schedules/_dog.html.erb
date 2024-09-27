@@ -1,14 +1,14 @@
-<card class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-  <h5 class="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
+<card class="block max-w-sm p-2 mb-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+  <h5 class="flex flex-col items-center mb-2 text-l bg-gray-200 font-bold tracking-tight text-gray-900 dark:text-white">
     <%= dog.dog.name %>
   </h5>
   <% if dog.status != 'done' %>
     <% if @manager %>
-      <p>Walker: <%= dog.walker.name %></p>
+      Walker: <%= dog.walker.name %>
 
       <form class="max-w-sm mx-auto" action="/schedule/update/walker?dog=<%= dog.id %><%= @manager ? "&manager=true" : '' %>" method="post">
-        <label for="underline_select" class="sr-only">Reassign</label>
-        <select name="walker" id="underline_select" onchange="this.form.requestSubmit()" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+        <label for="walker_select" class="sr-only">Reassign</label>
+        <select name="walker" id="walker_select" onchange="this.form.requestSubmit()" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
           <option selected>Reassign</option>
           <% @walkers.reject{ |w| w.id == dog.walker.id}.each do |walker| %>
             <option value="<%= walker.id %>"><%= walker.name %></option>
@@ -18,13 +18,14 @@
 
     <% end %>
 
+    <div class="flex flex-col items-center p-2">
     <form action="/schedule/update/status?dog=<%= dog.id %>&status=<%= Schedule::next_status(dog.status) %><%= @manager ? "&manager=true" : '' %>" method="post">
-      <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+      <button type="submit" class="text-white text-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
         <%= Schedule::next_status(dog.status).capitalize %>
         <svg class="w-6 h-2 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"></path>
         </svg>
       </button>
-    </form>
+    </form></div>
   <% end %>
 </card>
